@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Furniture Blog</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#ffffff;
+color:#444;
+}
+
+/* HEADER */
+
+header{
+
+width:90%;
+margin:auto;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:25px 0;
+}
+
+.logo span{
+
+font-size:28px;
+font-weight:bold;
+color:#2b7068;
+
+}
+
+.logo i{
+
+font-size:28px;
+color:#56786d;
+
+}
+
+nav{
+
+display:flex;
+align-items:center;
+gap:30px;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:#2b7068;
+font-weight:bold;
+
+}
+
+.search{
+
+background:#f2f2f2;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+}
+
+.search input{
+
+border:none;
+background:none;
+outline:none;
+
+}
+
+/* HERO */
+
+.hero{
+
+width:90%;
+margin:auto;
+position:relative;
+
+}
+
+.hero img{
+
+width:100%;
+height:330px;
+object-fit:cover;
+border-radius:4px;
+
+}
+
+.slider{
+
+position:absolute;
+bottom:-70px;
+left:50%;
+transform:translateX(-50%);
+
+display:flex;
+gap:35px;
+
+}
+
+.circle{
+
+text-align:center;
+color:white;
+
+}
+
+.circle img{
+
+width:130px;
+height:130px;
+
+border-radius:50%;
+
+border:8px solid white;
+
+object-fit:cover;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+.circle h4{
+
+margin-top:10px;
+
+}
+
+/* MAIN */
+
+.container{
+
+width:90%;
+
+margin:120px auto;
+
+display:grid;
+
+grid-template-columns:3fr 1fr;
+
+gap:40px;
+
+}
+
+/* LEFT */
+
+.posts h2{
+
+margin-bottom:20px;
+
+color:#2b7068;
+
+}
+
+.post{
+
+display:flex;
+
+gap:25px;
+
+margin-bottom:40px;
+
+align-items:center;
+
+}
+
+.post img{
+
+width:300px;
+height:220px;
+
+object-fit:cover;
+
+}
+
+.content h3{
+
+font-size:30px;
+
+color:#2b7068;
+
+margin-bottom:15px;
+
+}
+
+.content p{
+
+line-height:28px;
+
+margin-bottom:20px;
+
+}
+
+.content a{
+
+display:inline-block;
+
+padding:8px 18px;
+
+background:#d9b6bb;
+
+border-radius:30px;
+
+text-decoration:none;
+
+color:white;
+
+}
+
+.icons{
+
+margin-top:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:30px;
+
+}
+
+.card{
+
+border:1px solid #ddd;
+
+padding:15px;
+
+border-radius:15px;
+
+}
+
+.card img{
+
+width:100%;
+height:180px;
+object-fit:cover;
+
+margin-bottom:15px;
+
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+background:#f9f1ef;
+
+padding:25px;
+
+}
+
+.newsletter h2{
+
+margin-bottom:20px;
+
+color:#8f7472;
+
+}
+
+.newsletter input{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:25px;
+
+margin-bottom:20px;
+
+}
+
+.newsletter button{
+
+width:100%;
+
+padding:15px;
+
+background:#2b7068;
+
+border:none;
+
+color:white;
+
+border-radius:25px;
+
+cursor:pointer;
+
+}
+
+.mini-posts{
+
+margin-top:40px;
+
+}
+
+.mini-posts h2{
+
+margin-bottom:20px;
+
+}
+
+.mini{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+margin-bottom:20px;
+
+}
+
+.mini img{
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+.follow{
+
+margin-top:40px;
+
+background:#2b7068;
+
+padding:25px;
+
+color:white;
+
+}
+
+.social{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:20px;
+
+font-size:25px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+.container{
+
+grid-template-columns:1fr;
+
+}
+
+.post{
+
+flex-direction:column;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.slider{
+
+position:static;
+
+transform:none;
+
+margin-top:20px;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.hero{
+
+margin-bottom:50px;
+
+}
+
+header{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+nav{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+}
+</style>
+</head>
+<body>
+
+<!--================ HEADER ================-->
+
+<header>
+
+<div class="logo">
+    <span>YOUR BLOG</span><i>Name</i>
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Features</a>
+<a href="#">Categories</a>
+<a href="#">Contact</a>
+
+<div class="search">
+<i class="fa fa-search"></i>
+<input type="text" placeholder="Search">
+</div>
+
+</nav>
+
+</header>
+
+<!--================ HERO ================-->
+
+<section class="hero">
+
+<img src="https://images.unsplash.com/photo-1696642575644-834089020c0d?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+
+<div class="slider">
+
+<div class="circle">
+<img src="https://images.unsplash.com/photo-1696642575644-834089020c0d?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<h4>home</h4>
+</div>
+
+<div class="circle">
+<img src="https://images.unsplash.com/photo-1696642575644-834089020c0d?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<h4>Your title</h4>
+</div>
+
+<div class="circle">
+<img src="https://images.unsplash.com/photo-1696642575644-834089020c0d?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<h4>Your title</h4>
+</div>
+
+<div class="circle">
+<img src="https://images.unsplash.com/photo-1696642575644-834089020c0d?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D    ">
+<h4>Your title</h4>
+</div>
+
+</div>
+
+</section>
+
+<!--================ MAIN CONTENT ================-->
+
+<div class="container">
+
+<!-- LEFT -->
+
+<div class="posts">
+
+<h2>Features</h2>
+
+<div class="post big">
+
+<img src="images/img2.jpg">
+
+<div class="content">
+
+<h3>Your title here</h3>
+
+<p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+Officiis, molestiae.
+</p>
+
+<a href="#">Read More</a>
+
+<div class="icons">
+
+<span><i class="fa-regular fa-comment"></i>1</span>
+
+<div>
+<i class="fab fa-facebook-f"></i>
+<i class="fab fa-twitter"></i>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="post">
+
+<div class="content">
+
+<h3>Your title here</h3>
+
+<p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+</p>
+
+<a href="#">Read More</a>
+
+</div>
+
+<img src="images/img1.jpg">
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="images/img3.jpg">
+
+<h4>Your title</h4>
+
+<p>Lorem ipsum dolor sit.</p>
+
+</div>
+
+<div class="card">
+
+<img src="images/img4.jpg">
+
+<h4>Your title</h4>
+
+<p>Lorem ipsum dolor sit.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<aside class="sidebar">
+
+<div class="newsletter">
+
+<h2>News Letter</h2>
+
+<input type="email" placeholder="Your email">
+
+<button>Sign Up</button>
+
+</div>
+
+<div class="mini-posts">
+
+<h2>Your title</h2>
+
+<div class="mini">
+
+<img src="images/img4.jpg">
+
+<p>Lorem ipsum</p>
+
+</div>
+
+<div class="mini">
+
+<img src="images/img2.jpg">
+
+<p>Lorem ipsum</p>
+
+</div>
+
+<div class="mini">
+
+<img src="images/img3.jpg">
+
+<p>Lorem ipsum</p>
+
+</div>
+
+<div class="mini">
+
+<img src="images/img1.jpg">
+
+<p>Lorem ipsum</p>
+
+</div>
+
+</div>
+
+<div class="follow">
+
+<h2>Follow</h2>
+
+<div class="social">
+
+<i class="fab fa-facebook-f"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-pinterest"></i>
+<i class="fab fa-twitter"></i>
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</body>
+</html>
