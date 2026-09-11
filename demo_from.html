@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form onsubmit="return validate()">
+        <script>
+            function validate() {
+                var fname = document.getElementById('fn');
+                var nNumber = document.getElementById('mn');
+                var fnErr = document.getElementById('fn_err');
+                var mnErr = document.getElementById('mn_err');
+                var validName = true;
+                var validNumber = true;
+                var name = fname.value.trim();
+                var mobileNumber = nNumber.value.trim();
+                var nameRegex = /^[a-zA-Z ]{2,25}$/;
+                var mobileRegex = /^[0-9]{10}$/;
+
+                fnErr.textContent = "";
+                mnErr.textContent = "";
+                fname.style.border = "";
+                nNumber.style.border = "";
+
+                if (name === "") {
+                    fnErr.textContent = "Full name is required.";
+                    validName = false;
+                } else if (!nameRegex.test(name)) {
+                    fnErr.textContent = "Full name must contain 2 to 25 letters and spaces only.";
+                    validName = false;
+                }
+
+                if (mobileNumber === "") {
+                    mnErr.textContent = "Mobile number is required.";
+                    validNumber = false;
+                } else if (!mobileRegex.test(mobileNumber)) {
+                    mnErr.textContent = "Mobile number must contain exactly 10 digits.";
+                    validNumber = false;
+                }
+
+                if (!validName) {
+                    fname.style.border = "2px solid red";
+                }
+                if (!validNumber) {
+                    nNumber.style.border = "2px solid red";
+                }
+
+                return validName && validNumber;
+                console.log("Form submitted successfully!");
+                console.log("Full Name:", name);
+                console.log("Mobile Number:", mobileNumber);
+            }
+        </script>
+        <label for="fn">Full name:</label>
+        <input type="text" id="fn" name="fullName">
+        <p id="fn_err" style="color: red;"></p>
+
+        <label for="mn">Mobile number:</label>
+        <input type="text" id="mn" name="mobileNumber" inputmode="numeric" maxlength="10">
+        <p id="mn_err" style="color: red;"></p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+
+</html>

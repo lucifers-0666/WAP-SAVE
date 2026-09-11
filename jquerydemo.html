@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQUERY demo </title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+
+</script>
+
+<body>
+    <h1>this is demo of JQUERY </h1>
+    <button id="demoButton" type="button">Click me</button>
+    <p id="demoParagraph">This is a paragraph.</p>
+    <!-- Form validation demo -->
+    <form id="userForm" novalidate>
+        <h2>User registration</h2>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="required-input" placeholder="Enter your name">
+        <small class="error" id="nameError"></small>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="required-input" placeholder="Enter your email">
+        <small class="error" id="emailError"></small>
+
+        <label for="password">Password</label>
+        <div class="password-field">
+            <input type="password" id="password" name="password" class="required-input"
+                placeholder="8-25 chars, upper/lowercase, number, special character">
+            <button type="button" class="toggle-password" data-target="#password"
+                aria-label="Show password">Show</button>
+        </div>
+        <small class="error" id="passwordError"></small>
+
+        <label for="confirmPassword">Confirm password</label>
+        <div class="password-field">
+            <input type="password" id="confirmPassword" name="confirmPassword" class="required-input"
+                placeholder="Re-enter your password">
+            <button type="button" class="toggle-password" data-target="#confirmPassword"
+                aria-label="Show confirmed password">Show</button>
+        </div>
+        <small class="error" id="confirmPasswordError"></small>
+
+        <button type="submit">Submit</button>
+        <p id="successMessage" class="success"></p>
+    </form>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin-top: 25px;
+        }
+
+        form h2 {
+            color: #333;
+        }
+
+        label,
+        input {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            box-sizing: border-box;
+            padding: 8px;
+            width: 100%;
+        }
+
+        .password-field {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .password-field input {
+            margin-top: 0;
+        }
+
+        .toggle-password {
+            margin-top: 0;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        input.invalid {
+            border: 2px solid #d00;
+        }
+
+        .error {
+            color: #d00;
+            display: block;
+            min-height: 18px;
+        }
+
+        .success {
+            color: green;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // Allows letters, numbers and common email characters before @,
+            // then requires a domain name and a dot followed by an extension.
+            var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+            // Lookaheads require every password rule without consuming characters:
+            // 8-25 characters, uppercase, lowercase, number and special character.
+            // The final character set rejects spaces and unsupported characters.
+            var passwordRegex = /^(?=.{8,25}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*+_])[A-Za-z0-9!@#$%^&*+_]+$/;
+
+            $("#userForm").on("submit", function (event) {
+                event.preventDefault();
+
+                var formIsValid = true;
+                var name = $.trim($("#name").val());
+                var email = $.trim($("#email").val());
+                var password = $("#password").val();
+                var confirmPassword = $("#confirmPassword").val();
+
+                $("#successMessage").text("");
+                $(".required-input").removeClass("invalid");
+                $(".error").text("");
+
+                if (name === "") {
+                    $("#name").addClass("invalid");
+                    $("#nameError").text("Name is required.");
+                    formIsValid = false;
+                }
+
+                if (email === "") {
+                    $("#email").addClass("invalid");
+                    $("#emailError").text("Email is required.");
+                    formIsValid = false;
+                } else if (!emailRegex.test(email)) {
+                    $("#email").addClass("invalid");
+                    $("#emailError").text("Enter a valid email, for example: user_123@example.com.");
+                    formIsValid = false;
+                }
+
+                if (password === "") {
+                    $("#password").addClass("invalid");
+                    $("#passwordError").text("Password is required.");
+                    formIsValid = false;
+                } else if (!passwordRegex.test(password)) {
+                    $("#password").addClass("invalid");
+                    $("#passwordError").text(
+                        "Use 8-25 characters with uppercase, lowercase, a number and a special character (!@#$%^&*+_)."
+                    );
+                    formIsValid = false;
+                }
+
+                if (confirmPassword === "") {
+                    $("#confirmPassword").addClass("invalid");
+                    $("#confirmPasswordError").text("Please confirm your password.");
+                    formIsValid = false;
+                } else if (password !== confirmPassword) {
+                    $("#confirmPassword").addClass("invalid");
+                    $("#confirmPasswordError").text("Passwords do not match.");
+                    formIsValid = false;
+                }
+
+                if (formIsValid) {
+                    $("#successMessage").text("Form submitted successfully!");
+                }
+            });
+
+            $("#demoButton").on("click", function () {
+                $("#demoParagraph").text("The text has been changed!").css("color", "blue");
+            });
+
+            $(".toggle-password").on("click", function () {
+                var button = $(this);
+                var passwordInput = $(button.data("target"));
+                var isPasswordHidden = passwordInput.attr("type") === "password";
+
+                passwordInput.attr("type", isPasswordHidden ? "text" : "password");
+                button.text(isPasswordHidden ? "Hide" : "Show");
+                button.attr("aria-label", isPasswordHidden ? "Hide password" : "Show password");
+            });
+        });
+    </script>
+</body>
+
+</html>
